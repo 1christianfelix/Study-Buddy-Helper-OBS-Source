@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session Counter</title>
+
+    <script src="script.js" defer></script>
+  </head>
+
+  <style>
+    * {
+      margin: 0;
+      margin-left: 10px;
+    }
+    body {
+      font-size: 128px;
+      color: white;
+      font-family: Joynoted Demo;
+      letter-spacing: 3px;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .text-background {
+      /* background-color: rgba(255, 0, 0, 0.616); */
+    }
+
+    .timer {
+      display: inline-block;
+      position: absolute;
+      top: 100px;
+      left: 15%;
+    }
+
+    .container {
+      padding-top: 15px;
+      width: auto;
+      height: auto;
+    }
+
+    .time-container {
+      display: flex;
+      flex-direction: column;
+      /* align-items: center; */
+      /* gap: 10px; */
+    }
+
+    .controls-center {
+      height: 200px;
+      width: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      justify-content: end;
+      /* align-items: end; */
+    }
+
+    .controls {
+      /* margin-top: 100px; */
+      /* background-color: red; */
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .WIP {
+      width: 50%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* Delete this style later */
+    .min {
+      display: none;
+    }
+  </style>
+
+  <body>
+    <!-- <p class="text-background WIP">
+      OBS Auto Pom timer and session tracker ~TESTING SIMULATION~ ~WIP~
+    </p> -->
+
+    <!-- <div class="text-background timer">
+      <span class="temp">Time(mins)</span>
+      <span class="min">00</span>:<span class="sec">00</span>
+    </div> -->
+
+    <div class="container">
+      <div class="time-container">
+        <p class="text-background goal-track">
+          Goal: <span class="total-hours"></span> / 1000 Hours
+        </p>
+        <p class="text-background current-session">
+          Completed Today: <span class="session-hours">&nbsp;</span> Hours
+        </p>
+      </div>
+    </div>
+
+    <div class="controls-center">
+      <div class="controls">
+        <button class="btn-reset">Reset Timer</button>
+        <button class="btn-inc">inc hours</button>
+      </div>
+    </div>
+  </body>
+</html>
