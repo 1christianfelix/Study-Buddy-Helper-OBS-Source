@@ -16,11 +16,43 @@
 
     body {
       /* position: relative; */
+      height: 100vh;
+    }
+
+    .warning-box {
+      width: 250px;
+      line-height: 18px;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      /* background-color: rgba(255, 0, 0, 0.065); */
+    }
+    .warning-box strong {
+      font-size: 16px;
+    }
+
+    .background {
+      /* display: none; */
+      position: absolute;
+      z-index: -1;
+      width: 100%;
+      height: 100vh;
+      background-color: #ffdad3;
+    }
+
+    .background-off {
+      display: none;
+    }
+
+    .color-img {
+      color: blue;
+      font-size: 11px;
     }
 
     .container-output {
+      /* position: absolute; */
       display: grid;
       grid-template-columns: 1fr 1fr;
+      z-index: 1;
     }
 
     .output {
@@ -44,30 +76,81 @@
       list-style-type: none;
     }
 
-    /* Toggle */
-    .visibility-hidden {
-      /* display: none; */
+    .overlay {
+      display: none;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      background-color: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(3px);
+    }
+
+    .overlay.visibility {
+      display: block;
     }
 
     .main-menu {
+      margin: 0 auto;
       visibility: hidden;
       position: absolute;
       top: 0;
-      background-color: rgba(245, 245, 220, 0.92);
-      width: 100%;
-      height: 100vh;
+      background-color: rgba(248, 237, 235, 0.942);
+      width: 90%;
+      height: 90vh;
+      transform: translate(5%, 5%);
+      box-shadow: 16px 16px 36px rgba(124, 119, 118, 0.89);
     }
 
     .open-main-menu .main-menu {
       visibility: visible;
     }
 
+    .btn {
+      font-size: 12px;
+      padding: 8px 16px;
+      border: 2px solid rgba(230, 163, 150, 0.111);
+      background-color: #ffb5a7;
+      border-radius: 6px;
+    }
+
+    .btn:hover {
+      cursor: pointer;
+      background-color: #e6a396;
+    }
+
     .menu-btn {
+      margin-bottom: 5px;
       position: absolute;
       bottom: 0;
       right: 50%;
       transform: translate(50%, 0%);
       z-index: 999;
+      transition: all 0.5s;
+    }
+
+    .menu-btn:hover {
+      cursor: pointer;
+      background-color: #e6a396;
+    }
+
+    .disable-bg-warning {
+      margin-bottom: 5px;
+      position: absolute;
+      margin-left: 5px;
+      top: auto;
+      bottom: 0;
+      right: auto;
+      left: 0;
+    }
+
+    .btn-x {
+      z-index: 999;
+    }
+
+    .btn-x:hover {
+      cursor: pointer;
+      background-color: #e6a396;
     }
 
     .btn-x {
@@ -75,10 +158,31 @@
       top: 0;
       right: 0;
     }
+
+    .bg-color-sel {
+      background-color: #ffb5a7;
+      border: 2px solid rgba(230, 163, 150, 0.111);
+      background-color: #ffb5a7;
+      border-radius: 6px;
+      width: 36px;
+      height: 40px;
+    }
   </style>
   <body>
+    <div class="background"></div>
+
     <!-- OUTPUT CONTAINER -->
-    <div class="container-output visibility-hidden">
+    <div class="disable-bg-warning">
+      <div class="warning-box">
+        <p><strong>Having trouble seeing your font?</strong></p>
+        <p>Change the background color!</p>
+        <p>Be sure to disable the background after!</p>
+      </div>
+      <div class="bg-btns">
+        <button class="btn temp-bg-btn">TOGGLE BACKGROUND</button>
+      </div>
+    </div>
+    <div class="container-output">
       <div class="output output-messages">
         <div class="output-tracker">tracker</div>
         <div class="output-tracker">tracker</div>
@@ -103,19 +207,55 @@
     <!-- MENU -->
     <button class="btn menu-btn">MENU</button>
     <div class="container-menu">
+      <div class="overlay"></div>
       <div class="main-menu">
         <button class="btn btn-x">X</button>
       </div>
     </div>
+
+    <!-- Script -->
     <script>
-      document
-        .querySelector(".menu-btn")
-        .addEventListener("click", function (e) {
-          document
-            .querySelector(".container-menu")
-            .classList.toggle("open-main-menu");
-          console.log("test");
-        });
+      // Landing page functions
+      {
+        // Reveal Menu
+        document
+          .querySelector(".menu-btn")
+          .addEventListener("click", function (e) {
+            document
+              .querySelector(".container-menu")
+              .classList.toggle("open-main-menu");
+            console.log("test");
+
+            document.querySelector(".overlay").classList.toggle("visibility");
+          });
+
+        // Exit Menu by Clicking By
+        document
+          .querySelector(".overlay")
+          .addEventListener("click", function () {
+            document
+              .querySelector(".container-menu")
+              .classList.toggle("open-main-menu");
+            document.querySelector(".overlay").classList.toggle("visibility");
+          });
+
+        //Toggle temporary Background
+        document
+          .querySelector(".temp-bg-btn")
+          .addEventListener("click", function () {
+            document
+              .querySelector(".background")
+              .classList.toggle("background-off");
+          });
+      }
     </script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>
